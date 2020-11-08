@@ -101,9 +101,9 @@ $ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction Sile
 
 ## Useful links
 
-[](https://github.com/swisskyrepo/PayloadsAllTheThings)
-[](https://book.hacktricks.xyz/)
-[](https://gtfobins.github.io/)
-[](https://github.com/LOLBAS-Project/LOLBAS/blob/master/README.md)
-[](https://www.sans.org/security-resources/sec560/misc_tools_sheet_v1.pdf)
+<https://github.com/swisskyrepo/PayloadsAllTheThings>
+<https://book.hacktricks.xyz/>
+<https://gtfobins.github.io/>
+<https://github.com/LOLBAS-Project/LOLBAS/blob/master/README.md>
+<https://www.sans.org/security-resources/sec560/misc_tools_sheet_v1.pdf>
 
