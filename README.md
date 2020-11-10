@@ -123,16 +123,15 @@ docker start [container]
 docker stop [container]
 docker restart [container]
 
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
+
 docker exec -ti my-nginx /bin/sh
 docker run -ti --rm --name my-ngnix nginx:1.19.4-alpine /bin/sh
 
 # Mount folder
 
 docker run -ti --rm --name my-ngnix -v /home/kali:/mnt nginx:1.19.4-alpine /bin/sh 
-
-
-docker kill $(docker ps -q)
-docker rm $(docker ps -a -q)
 
 # Dangling images
 
