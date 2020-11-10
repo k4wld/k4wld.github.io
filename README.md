@@ -35,6 +35,22 @@ find / -perm -4000 2> /dev/null
 grep -iR "pass" * | more
 ```
 
+## PYTHON
+
+```sh
+mkdir environment
+cd environment
+
+python3 -m venv my_env
+source my_env/bin/activate
+
+# Alternative:
+
+viitualenv my_env
+source my_env/bin/activate
+```
+
+
 ## Powershell
 
 ### Encoded commands
