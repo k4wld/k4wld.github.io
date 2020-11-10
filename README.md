@@ -99,26 +99,37 @@ FindDate=Get-Date -Year 2016 -Month 06 -Day 24
 Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate }
 Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate -and $_.LastWriteTime -le $Finddate.adddays(1) }
 ```
-
 ## Docker
  
-```sh 
+``` 
+
+docker pull nginx:1.19.4-alpine
+docker images
+docker run --name my-nginx -p 9080:80 nginx:1.19.4-alpine
+
 # Having a Dockerfile
+
 docker build -t xxx:yyy .
-# 
-docker run -d -p 8080:8080 xxx:yyy
+
+# Running
+
+docker run --name my-nginx -p 9080:80 nginx:1.19.4-alpine
+
+docker ps # running containers
+docker ps -a  # also not running
+docker ps -q # quite, only IDs
 
 docker start [container]
 docker stop [container]
-docker exec -ti [container] [command]
-docker run -ti --image [image] [container] [command]
-docker run -ti --rm --image [image] [container] [command]
-
+docker restart [container]
 docker kill $(docker ps -q)
-docker rm $(docker ps -a -q)
 
-# !!Wipe all images!!
-docker system prune -a
+docker exec -ti [container] [command]
+docker run -ti  -- image [image] [container] [command]
+docker run -ti  -- rm -- image [image] [container] [command]
+
+docker rm $(docker ps -a -q)
+docker system prune -a # remove all images
 ```
 
 ## Useful links
