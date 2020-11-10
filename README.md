@@ -103,17 +103,21 @@ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction Silent
 ## Docker
  
 ```sh 
+# Having a Dockerfile
 docker build -t xxx:yyy .
+# 
 docker run -d -p 8080:8080 xxx:yyy
 
 docker start [container]
 docker stop [container]
 docker exec -ti [container] [command]
-docker run -ti  — image [image] [container] [command]
-docker run -ti  — rm  — image [image] [container] [command]
+docker run -ti --image [image] [container] [command]
+docker run -ti --rm --image [image] [container] [command]
 
 docker kill $(docker ps -q)
 docker rm $(docker ps -a -q)
+
+# !!Wipe all images!!
 docker system prune -a
 ```
 
