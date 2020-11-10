@@ -100,6 +100,23 @@ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction Silent
 Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.LastWriteTime -ge $FindDate -and $_.LastWriteTime -le $Finddate.adddays(1) }
 ```
 
+## Docker
+ 
+```sh 
+docker build -t xxx:yyy .
+docker run -d -p 8080:8080 xxx:yyy
+
+docker start [container]
+docker stop [container]
+docker exec -ti [container] [command]
+docker run -ti  — image [image] [container] [command]
+docker run -ti  — rm  — image [image] [container] [command]
+
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
+docker system prune -a
+```
+
 ## Useful links
 
 <https://github.com/swisskyrepo/PayloadsAllTheThings>
