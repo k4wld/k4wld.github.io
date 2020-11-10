@@ -102,18 +102,17 @@ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction Silent
 ## Docker
  
 ``` 
-
 docker pull nginx:1.19.4-alpine
 docker images
-docker run --name my-nginx -p 9080:80 nginx:1.19.4-alpine
+docker run --name my-nginx -d -p 9080:80 nginx:1.19.4-alpine # -d: detached mode
+docker logs -f my-nginx # -f: like tail -f, follow the log
+docker inspect my-nginx
 
 # Having a Dockerfile
 
 docker build -t xxx:yyy .
 
 # Running
-
-docker run --name my-nginx -p 9080:80 nginx:1.19.4-alpine
 
 docker ps # running containers
 docker ps -a  # also not running
@@ -122,14 +121,12 @@ docker ps -q # quite, only IDs
 docker start [container]
 docker stop [container]
 docker restart [container]
+
+docker exec -ti my-nginx /bin/sh
+
 docker kill $(docker ps -q)
-
-docker exec -ti [container] [command]
-docker run -ti  -- image [image] [container] [command]
-docker run -ti  -- rm -- image [image] [container] [command]
-
 docker rm $(docker ps -a -q)
-docker system prune -a # remove all images
+docker system prune -a
 ```
 
 ## Useful links
