@@ -49,7 +49,13 @@ source my_env/bin/activate
 viitualenv my_env
 source my_env/bin/activate
 ```
+## Socat
 
+```sh
+# Tunnel a connection from a local TCP port to a remote service
+
+socat -v tcp4-listen:8000,reuseaddr,fork tcp4:10.10.12.15:80 
+```
 
 ## Powershell
 
