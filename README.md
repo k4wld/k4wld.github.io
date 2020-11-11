@@ -46,7 +46,7 @@ source my_env/bin/activate
 
 # Alternative:
 
-viitualenv my_env
+virtualenv my_env
 source my_env/bin/activate
 ```
 ## Socat
