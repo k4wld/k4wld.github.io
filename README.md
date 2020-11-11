@@ -161,6 +161,9 @@ docker images --filter "dangling=true"
 docker rmi $(docker images -q --filter "dangling=true")
 
 docker system prune -a
+
+# History
+docker history nginx:1.19.4-alpine
 ```
 
 ## Useful links
