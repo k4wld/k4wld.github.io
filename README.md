@@ -18,7 +18,6 @@ ctrl-u: delete the content from current cursor back to the start of the line
 ctrl-k: kill to the end of the line 
 ctrl-a: move cursor to beginning of line  
 ctrl-e: move cursor to end of line 
-
 ctrl-l: clear the screen. 
 ctrl-<arrow-keys>: move by word
 ```
@@ -34,12 +33,13 @@ sudo nmap -Pn -sV -sC -p$ports 10.10.10.77 -oA nmap
 ## Web
 
 ```sh
-curl -v -X OPTIONS http://192.168.1.105/test
-
 gobuster dir -w /usr/share/wordlists/dirb/common.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o gob_common_80.txt
 gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o go_medium_80.txt
 
-nikto -host 192.168.1.159:8080 | tee nikto_192.168.1.159_8080.txt
+# fuzz host header
+ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.15/ -H "Host: FUZZ.example.com" -mc 200 -c
+
+nikto -host 192.168.1.159:8080 | tee -a nikto_192.168.1.159_8080.txt
 ```
 
 ## Find
