@@ -1,12 +1,26 @@
 # Commands
 
-## vi
+## vi (setup)
 
 ```sh
 cat /etc/vim/vimrc.local 
 set paste
 set cursorline
 set number
+```
+
+## Bash
+
+```sh
+ctrl-r: search through command history, right arrow key to put match on the command line, repeat ctrl-r to cycle through more results 
+ctrl-w: delete the last word
+ctrl-u: delete the content from current cursor back to the start of the line
+ctrl-k: kill to the end of the line 
+ctrl-a: move cursor to beginning of line  
+ctrl-e: move cursor to end of line 
+
+ctrl-l: clear the screen. 
+ctrl-<arrow-keys>: move by word
 ```
 
 ## Enumeration 
@@ -123,8 +137,7 @@ Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -ErrorAction Silent
 ```
 ## Docker
  
-``` 
-
+```sh
 docker pull nginx:1.19.4-alpine
 docker images
 docker run --name my-nginx -d -p 9080:80 nginx:1.19.4-alpine # -d: detached mode
