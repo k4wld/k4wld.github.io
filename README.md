@@ -22,6 +22,19 @@ ctrl-l: clear the screen.
 ctrl-<arrow-keys>: move by word
 ```
 
+## Git
+
+```sh
+git branch -a
+git checkout master
+git pull
+git checkout -b <New_branch_name>
+git push origin <new_branch_name_you_created>
+```
+
+
+
+
 ## Enumeration 
 
 ```sh
