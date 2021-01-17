@@ -44,7 +44,7 @@ sudo nmap -Pn -sV -sC -p$ports 10.10.10.77 -oA nmap
 ```
 ## Generate Wordlist for hashcat or john
 
-<https://github.com/stealthsploit/Optimised-hashcat-Rule
+<https://github.com/stealthsploit/Optimised-hashcat-Rule>
 
 ```
 echo "Summer2021" | hashcat -r OneRuleToRuleThemAll.rule --stdout > wordlist.txt
