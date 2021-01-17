@@ -42,6 +42,18 @@ sudo masscan -p1-65535 10.10.10.77 --rate=1000 -e tun0 > ports
 ports=$(cat ports | awk -F " " '{print $4}' | awk -F "/" '{print $1}' | sort -n | tr '\n' ',' | sed 's/,$//')
 sudo nmap -Pn -sV -sC -p$ports 10.10.10.77 -oA nmap
 ```
+## Generate Wordlist for hashcat or john
+
+<https://github.com/stealthsploit/Optimised-hashcat-Rule>
+
+```
+echo "Summer2021" | hashcat -r OneRuleToRuleThemAll.rule --stdout > wordlist.txt
+# John
+john --wordlist=wordlist.txt hash.txt
+# hashcat
+hashcat -m <format_id> hash.txt wordlist.txt --force # foramt_id, e.g. 18200, see link below
+```
+<https://hashcat.net/wiki/doku.php?id=example_hashes>
 
 ## Web
 
