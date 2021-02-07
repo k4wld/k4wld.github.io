@@ -46,7 +46,7 @@ sudo nmap -Pn -sV -sC -p$ports 10.10.10.77 -oA nmap
 
 <https://github.com/stealthsploit/Optimised-hashcat-Rule>
 
-```
+```sh
 echo "Summer2021" | hashcat -r OneRuleToRuleThemAll.rule --stdout > wordlist.txt
 # John
 john --wordlist=wordlist.txt hash.txt
@@ -88,6 +88,13 @@ source my_env/bin/activate
 virtualenv my_env
 source my_env/bin/activate
 ```
+
+## tcpdump
+```sh
+# to verify that your machine gets ping'ed but something (e.g. your malicious remote command)
+sudo tcpdump ip proto \\icmp -i tun0
+```
+
 ## Socat
 
 ```sh
