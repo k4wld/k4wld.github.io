@@ -32,10 +32,16 @@ git checkout -b <New_branch_name>
 git push origin <new_branch_name_you_created>
 ```
 
+## DNS enumeration
 
+```sh
+# subdomain brute force
+dnsenum --threads 64 --dnsserver 10.11.12.13 -f SecLists/Discovery/DNS/subdomains-top1million-5000.txt youdomain.com
+# DNS zone transfer
+dig axfr yourdomain.com @10.11.12.13
+```
 
-
-## Enumeration 
+## Port Enumeration 
 
 ```sh
 sudo masscan -p1-65535 10.10.10.77 --rate=1000 -e tun0 > ports
