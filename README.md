@@ -71,13 +71,12 @@ hashcat -m <format_id> hash.txt wordlist.txt --force # foramt_id, e.g. 18200, se
 ## Web
 
 ```sh
-gobuster dir -w /usr/share/wordlists/dirb/common.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o gob_common_80.txt
-gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -l -t 30 -e -k -x .html,.php -u http://192.168.1.159:80 -o go_medium_80.txt
-
+# web-content
+gobuster dir -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -l -t 30 -e -k -x .html,.php -u http://10.10.10.10 -o gob_raft_80.txt -v
+# subdomains
+gobuster vhost -w /opt/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -u http://10.10.10.10 -o gob_vhost_80.txt -v
 # fuzz host header
 ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.15/ -H "Host: FUZZ.example.com" -mc 200 -c
-
-nikto -host 192.168.1.159:8080 | tee -a nikto_192.168.1.159_8080.txt
 ```
 
 ## Find
