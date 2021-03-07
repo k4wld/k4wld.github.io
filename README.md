@@ -72,9 +72,9 @@ hashcat -m <format_id> hash.txt wordlist.txt --force # foramt_id, e.g. 18200, se
 
 ```sh
 # web-content
-gobuster dir -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -l -t 30 -e -k -x .html,.php -u http://10.10.10.10 -o gob_raft_80.txt -v
+gobuster dir -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -l -t 30 -e -k -x .html,.php -u http://example.com -o gob_raft_80.txt
 # subdomains
-gobuster vhost -w /opt/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -u http://10.10.10.10 -o gob_vhost_80.txt -v
+gobuster vhost -w /opt/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -u http://example.com -o gob_vhost_80.txt
 # fuzz host header
 ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.15/ -H "Host: FUZZ.example.com" -mc 200 -c
 ```
