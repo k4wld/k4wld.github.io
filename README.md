@@ -71,7 +71,8 @@ hashcat -m <format_id> hash.txt wordlist.txt --force # foramt_id, e.g. 18200, se
 ## Web
 
 ```sh
-# web-content
+# web-content discovery
+feroxbuster -u http://10.10.10.110:8080 # very fast, configure your wordlist in /etc/feroxbuster/ferox-config.toml 
 gobuster dir -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -l -t 30 -e -k -x .html,.php -u http://example.com -o gob_raft_80.txt
 # subdomains
 gobuster vhost -w /opt/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -u http://example.com -o gob_vhost_80.txt
@@ -146,7 +147,7 @@ socat -v tcp4-listen:8000,reuseaddr,fork tcp4:10.10.12.15:80
 ### Encoded commands
 
 ```powershell
-$command="ls"
+$command="ping -c 3 10.10.10.10"
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes($command))
 powershell.exe -encoded $Encoded
 ```
