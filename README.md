@@ -168,7 +168,9 @@ Port Scanning
 ```powershell
 1..1024 | % {echo ((new-object Net.Sockets.TcpClient).Connect("localhost", $_)) "Port $_ is open!"} 2>$null
 ```
-
+```bat
+netstat -aon | findstr /i "listening"
+```
 Downloading
 
 ```powershell
