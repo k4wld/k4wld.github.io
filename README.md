@@ -54,7 +54,7 @@ sudo nmap -Pn -sV -sC -p$ports 10.10.10.77 -oA nmap
 sudo proxychains nmap -sT -p22 -n 192.168.1.0/24
 ```
 
-### local port listening
+### Show local ports listening
 
 ```sh
 ss -tulpn
