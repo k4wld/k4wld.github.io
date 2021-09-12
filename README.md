@@ -76,8 +76,15 @@ feroxbuster -u http://10.10.10.110:8080 # very fast, configure your wordlist in 
 gobuster dir -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -l -t 30 -e -k -x .html,.php -u http://example.com -o gob_raft_80.txt
 # subdomains
 gobuster vhost -w /opt/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -u http://example.com -o gob_vhost_80.txt
-# fuzz host header
-ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.15/ -H "Host: FUZZ.example.com" -mc 200 -c
+# user enum
+ffuf -w /usr/share/wordlists/SecLists/Usernames/Names/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/signup -mr "username already exists"
+# brute force
+ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Credentials/10-million-password-list-top-100.txt:W2 -X POST -d "username=W1&password=W2" -H "Content-Type: application/x-www-form-urlencoded" -u http://MACHINE_IP/customers/login -fc 200
+# subdomain brute force (try first without -fs: it will return a lot of succesfull responses, now filter the size with -fs 
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/namelist.txt -H "Host: FUZZ.domain.xyz" -u http://MACHINE_IP -fs 2395
+# hydra login form brute force
+hydra -l p.smith -P passwords.txt MACHINE_IP http-post-form '/login.php:login_username=p.smithn&secretkey=^PASS^:Unknown user or password incorrect.'
+
 ```
 
 ## Find
