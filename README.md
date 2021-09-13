@@ -99,7 +99,7 @@ hydra -l p.smith -P passwords.txt MACHINE_IP http-post-form '/login.php:login_us
 sudo find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
 ```
 
-### find files recursively that contain "pass". -l only shows the file, not the found strings
+### find files that contain "pass". 
 ```sh
 grep -iRl "pass" * | more
 ```
