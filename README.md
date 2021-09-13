@@ -25,11 +25,26 @@ ctrl-<arrow-keys>: move by word
 ## Git
 
 ```sh
+
+# general
+
 git branch -a
 git checkout master
 git pull
 git checkout -b <New_branch_name>
 git push origin <new_branch_name_you_created>
+
+# found a .git on a website? Dump content:
+
+git clone https://github.com/internetwache/GitTools
+
+gitdumper.sh http://target.tld/.git/ dest-dir
+
+cd dest-dir
+
+git status
+git log # show the commit history
+git show commit_id # view commit changes (recover a secret password?)
 ```
 
 ## DNS enumeration
