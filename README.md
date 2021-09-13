@@ -92,11 +92,16 @@ hydra -l p.smith -P passwords.txt MACHINE_IP http-post-form '/login.php:login_us
 
 ```
 
-## Find
+## Find / grep
 
+### SUID / SGID binaries
 ```sh
-find / -perm -4000 2> /dev/null
-grep -iR "pass" * | more
+sudo find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+```
+
+### find files recursively that contain "pass". -l only shows the file, not the found strings
+```sh
+grep -iRl "pass" * | more
 ```
 
 ## PYTHON
