@@ -46,6 +46,11 @@ git status
 git log # show the commit history
 git show commit_id # view commit changes (recover a secret password?)
 ```
+## Remote Desktop
+
+```sh
+xfreerdp /v:10.10.8.80 /u:USERNAME /p:PASSWORD /cert:ignore +clipboard /dynamic-resolution /drive:share,/tmp
+```
 
 ## DNS enumeration
 
