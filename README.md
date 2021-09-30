@@ -194,6 +194,12 @@ ssh -L 80:intra.example.com:80 gw.example.com
 
 ## Powershell
 
+### Start-Process cmd as other user
+
+```powershell
+Start-Process powershell 'Start-Process cmd -Verb RunAs' -Credential adm1n
+```
+
 ### Encoded commands
 
 ```powershell
