@@ -118,13 +118,18 @@ hydra -l p.smith -P passwords.txt MACHINE_IP http-post-form '/login.php:login_us
 ```sh
 sudo find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
 ```
+### find binaries with special capabilities
+
+```sh
+getcap -r / 2>/dev/null
+```
 
 ### find files that contain "pass". 
 ```sh
 grep -iRl "pass" * | more
 ```
 
-## PYTHON
+## Python
 
 ```sh
 mkdir environment
